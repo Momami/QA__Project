@@ -16,6 +16,7 @@ import ru.yandex.qatools.ashot.cropper.indent.IndentCropper;
 public class Screen {
     private WebDriver driver = null;
     private String path;
+
     Screen (WebDriver driver, String path) {
         this.driver = driver;
         this.path = path;
@@ -48,9 +49,9 @@ public class Screen {
 
             js.executeScript("arguments[0].setAttribute('style', 'border: 2px solid red;');", element);
 
-            Screenshot sc = new AShot().imageCropper(new IndentCropper(1000).addIndentFilter(new BlurFilter()))
+            Screenshot screenshot = new AShot().imageCropper(new IndentCropper(1000).addIndentFilter(new BlurFilter()))
                     .takeScreenshot(driver, element);
-            BufferedImage img = sc.getImage();
+            BufferedImage img = screenshot.getImage();
             ImageIO.write(img, "png", to);
             ImageIO.write(img, "png", baos);
             baos.flush();
