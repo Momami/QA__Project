@@ -1,4 +1,5 @@
 package qa_test;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,34 +12,30 @@ import org.testng.annotations.*;
 public class Test1 extends TestBefore {
     @Test
     public void test_1(ITestContext testContext) {
+        WebElement userButtonLog = findWithTakeScreen(driver, By.cssSelector(".header2-nav__user"));
+        userButtonLog.click();
 
-        WebElement el = findWithTakeScreen(driver, By.cssSelector(".header2-nav__user"));
-        el.click();
-
-        WebElement logInFotm = (new WebDriverWait(driver, 20)
+        WebElement logInForm = (new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".passp-login-form"))));
 
-        el = findWithTakeScreen(logInFotm, By.name("login"));
+        WebElement logIn = findWithTakeScreen(logInForm, By.name("login"));
+        logIn.click();
+        logIn.sendKeys("wewantGoT@yandex.ru");
+        logIn.sendKeys(Keys.ENTER);
 
-
-        el.click();
-        el.sendKeys("wewantGoT@yandex.ru");
-        el.sendKeys(Keys.ENTER);
-
-        WebElement PassForm = (new WebDriverWait(driver, 20)
+        WebElement passwordForm = (new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".passp-password-form"))));
 
-        el = findWithTakeScreen(PassForm, By.name("passwd"));
+        WebElement passwordLine = findWithTakeScreen(passwordForm, By.name("passwd"));
+        passwordLine.sendKeys("Aria_one_love" + "\n");
 
-        el.sendKeys("Aria_one_love" + "\n");
+        WebElement userButtonLogin = driver.findElement(By.cssSelector("[class*='header2-nav__user']"));
+        WebElement textButtonUser = findWithTakeScreen(userButtonLogin, By.cssSelector("[class*='__text']"));
+        Assert.assertEquals(textButtonUser.getAttribute("textContent"), "Мой профиль");
 
-        WebElement note = driver.findElement(By.cssSelector("[class*='header2-nav__user']"));
-        el = findWithTakeScreen(note, By.cssSelector("[class*='__text']"));
-        Assert.assertEquals(el.getAttribute("textContent"), "Мой профиль");
-
-        (new Actions(driver)).moveToElement(note).build().perform();
-        el = findWithTakeScreen(driver, By.cssSelector("[class*='user-menu__email']"));
-        Assert.assertEquals(el.getAttribute("textContent"), "wewantGoT@yandex.ru");
+        (new Actions(driver)).moveToElement(userButtonLogin).build().perform();
+        WebElement userMenuEmail = findWithTakeScreen(driver, By.cssSelector("[class*='user-menu__email']"));
+        Assert.assertEquals(userMenuEmail.getAttribute("textContent"), "wewantGoT@yandex.ru");
     }
 
 }
