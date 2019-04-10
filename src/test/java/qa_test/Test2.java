@@ -1,5 +1,6 @@
 package qa_test;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -7,14 +8,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-//@Listeners(Listener.class)
 public class Test2 extends TestBefore {
 
     @Parameters("cityName")
@@ -35,10 +32,19 @@ public class Test2 extends TestBefore {
         enterCity.click();
         enterCity.sendKeys(cityName);
 
+        //(new WebDriverWait(driver, 10))
+        //        .until(ExpectedConditions.elementToBeClickable(enterCity));
+
         (new WebDriverWait(driver, 10))
-                .until(ExpectedConditions.elementToBeClickable(enterCity));
+                .until(ExpectedConditions.visibilityOf(enterCity
+                .findElement(By.xpath("//strong[text()[contains(., \'" + cityName + "\')]]"))));
 
         enterCity.sendKeys(Keys.ENTER);
+
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.invisibilityOf(driver
+                        .findElement(By.cssSelector("[class*='suggestick-list']"))));
+
         enterCity.sendKeys(Keys.ENTER);
 
         driver.navigate().refresh();

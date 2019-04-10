@@ -1,20 +1,20 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="TestSuite">
-    <test name="LoginTest">
-        <classes>
-            <class name="qa_test.Test1" />
-        </classes>
-    </test>
-    <test name="ChangeCityTest">
-        <parameter name="cityName" value="Хвалынск"/>
-        <classes>
-            <class name="qa_test.Test2" />
-        </classes>
-    </test>
+    <!--    <test name="LoginTest">
+            <classes>
+                <class name="qa_test.Test1" />
+            </classes>
+        </test>-->
+        <test name="ChangeCityTest">
+            <parameter name="cityName" value="Хвалынск"/>
+            <classes>
+                <class name="qa_test.Test2" />
+            </classes>
+        </test>
 <!--
-    <test name="PriceTest">
-        <classes>
-            <class name="qa_test.Test3" />
-        </classes>
-    </test>-->
+        <test name="PriceTest">
+            <classes>
+                <class name="qa_test.Test3" />
+            </classes>
+        </test>-->
 </suite>
