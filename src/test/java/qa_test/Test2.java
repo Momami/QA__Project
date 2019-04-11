@@ -16,7 +16,7 @@ public class Test2 extends TestBefore {
 
     @Parameters("cityName")
     @Test
-    public void test(String cityName) {
+    public void test2(String cityName) {
 
         WebElement regionElement = findWithTakeScreen(driver,
                 By.cssSelector("[class*='__region'] [class*='__inner']"));

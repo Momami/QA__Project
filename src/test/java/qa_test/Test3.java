@@ -36,14 +36,14 @@ public class Test3 extends TestBefore{
         // Ожидание появления подсказки, сколько элементов найдено
         // Она гарантирует то, что страница прогрузилась и можно вводить второе поле
         WebElement wind = findWithTakeScreen(driver, By.cssSelector("[class*='_1PQIIOelRL']"));
-        (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(wind));
+        (new WebDriverWait(driver, 30)).until(ExpectedConditions.visibilityOf(wind));
         // Вводим цену во второе поле
         fieldPriceTo.click();
         fieldPriceTo.sendKeys("1999");
         fieldPriceTo.sendKeys(Keys.ENTER);
 
         // Ожидание появления подсказки
-        (new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOf(wind));
+        (new WebDriverWait(driver, 30)).until(ExpectedConditions.visibilityOf(wind));
 
         // Пока есть кнопка "Показать еще", нажимаем её, тем самым откроем на одной сранице все щетки
         while(true) {
@@ -119,36 +119,34 @@ public class Test3 extends TestBefore{
         // Добавляем элементы в список для проверки корректности текущей цены
         List<WebElement> checkPrice = driver.findElements(By.cssSelector("[class *= '_1Q9ASvPbPN']"));
 
-        String priceStr = findWithTakeScreen(checkPrice.get(0), By.cssSelector("[data-auto*='value']"))
+        String priceStr = checkPrice.get(0).findElement(By.cssSelector("[data-auto*='value']"))
                 .getAttribute("textContent").replace(" ", "");
         // Вытаскиваем стоимость продукта и доставки
         int productPrice = Integer.parseInt(priceStr.substring(0, priceStr.length() - 1));
-        priceStr = findWithTakeScreen(checkPrice.get(1), By.cssSelector("[data-auto*='value']"))
+        priceStr = checkPrice.get(1).findElement(By.cssSelector("[data-auto*='value']"))
                 .getAttribute("textContent").replace(" ", "");
         int comePrice = Integer.parseInt(priceStr.substring(0, priceStr.length() - 1)), sale = 0;
 
         int index = 2;
         // Если есть скидка, то достаем и ее
         if (checkPrice.size() == 4) {
-            priceStr =findWithTakeScreen(checkPrice.get(2),
+            priceStr = checkPrice.get(2).findElement(
                     By.cssSelector("[class*='_3l-uEDOaBN _180wuXkZuy _3HJsMt3YC_']"))
                     .getAttribute("textContent").replace(" ", "");
             sale = Integer.parseInt(priceStr.substring(1, priceStr.length() - 1));
             index = 3;
         }
-        priceStr = findWithTakeScreen(checkPrice.get(index), By.cssSelector("[class*='_1oBlNqVHPq']"))
+        priceStr = checkPrice.get(index).findElement(By.cssSelector("[class*='_1oBlNqVHPq']"))
                 .getAttribute("textContent").replace(" ", "");
         int allPrice = Integer.parseInt(priceStr.substring(0, priceStr.length() - 1));
 
         Assert.assertEquals(productPrice + comePrice - sale, allPrice);
 
-        //_1u3j_pk1db n2qB2SKKgz _3-NzCCibhA _2CJTlO2WW_
-        //_4qhIn2-ESi _2sJs248D-A _18c2gUxCdP _3hWhO4rvmA
-
         //div[@data-auto='CartOfferPrice']/span/span/span
+
         // Добавляем кол-во щеток, пока цена не станет выше 2999
         priceStr = findWithTakeScreen
-                (driver, By.xpath("//div[@data-auto='CartOfferPrice']/span/span[1]/span[1]"))
+                (driver, By.xpath("//div[@data-auto='CartOfferPrice']/span/span/span"))
                 .getAttribute("textContent").replace(" ", "");
         int priceProduct = Integer.parseInt(priceStr);
         while(priceProduct < 2999){
@@ -156,7 +154,7 @@ public class Test3 extends TestBefore{
             findWithTakeScreen(driver,
                     By.xpath("//button//span[text()='+']")).click();
             priceStr = findWithTakeScreen
-                    (driver, By.xpath("//div[@data-auto='CartOfferPrice']/span/span[1]/span[1]"))
+                    (driver, By.xpath("//div[@data-auto='CartOfferPrice']/span/span/span"))
                     .getAttribute("textContent").replace(" ", "");
             priceProduct = Integer.parseInt(priceStr);
         }
@@ -171,11 +169,11 @@ public class Test3 extends TestBefore{
         // Снова аналогичная проверка на корректность стоимости товара
         checkPrice = driver.findElements(By.cssSelector("[class *= '_1Q9ASvPbPN']"));
 
-        String priceStrTwo = findWithTakeScreen(checkPrice.get(0), By.cssSelector("[data-auto*='value']"))
+        String priceStrTwo = checkPrice.get(0).findElement(By.cssSelector("[data-auto*='value']"))
                 .getAttribute("textContent").replace(" ", "");
 
         productPrice = Integer.parseInt(priceStrTwo.substring(0, priceStrTwo.length() - 1));
-        priceStrTwo = findWithTakeScreen(checkPrice.get(1), By.cssSelector("[data-auto*='value']"))
+        priceStrTwo = checkPrice.get(1).findElement(By.cssSelector("[data-auto*='value']"))
                 .getAttribute("textContent");
         Assert.assertTrue(priceStrTwo.contains("бесплатно"));
 
@@ -183,13 +181,13 @@ public class Test3 extends TestBefore{
         index = 2;
 
         if (checkPrice.size() == 4) {
-            priceStrTwo = findWithTakeScreen(checkPrice.get(2),
+            priceStrTwo = checkPrice.get(2).findElement(
                     By.cssSelector("[class*='_3l-uEDOaBN _180wuXkZuy _3HJsMt3YC_']"))
                     .getAttribute("textContent").replace(" ", "");
             sale = Integer.parseInt(priceStrTwo.substring(1, priceStrTwo.length() - 1));
             index = 3;
         }
-        priceStrTwo = findWithTakeScreen(checkPrice.get(index), By.cssSelector("[class*='_1oBlNqVHPq']"))
+        priceStrTwo = checkPrice.get(index).findElement(By.cssSelector("[class*='_1oBlNqVHPq']"))
                 .getAttribute("textContent").replace(" ", "");
         allPrice = Integer.parseInt(priceStrTwo.substring(0, priceStrTwo.length() - 1));
 

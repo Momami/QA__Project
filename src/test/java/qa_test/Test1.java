@@ -11,7 +11,7 @@ import org.testng.annotations.*;
 
 public class Test1 extends TestBefore {
     @Test
-    public void test_1(ITestContext testContext) {
+    public void test1() {
         WebElement userButtonLog = findWithTakeScreen(driver, By.cssSelector(".header2-nav__user"));
         userButtonLog.click();
 
