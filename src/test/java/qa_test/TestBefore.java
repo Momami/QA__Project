@@ -16,21 +16,6 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBefore {
     public static WebDriver driver;
-    public static Screen screen;
-
-    public WebElement findWithTakeScreen(WebDriver d, By by) {
-        WebElement element = d.findElement(by);
-        DateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss");
-        screen.saveAllureScreenshot(element, formatForDateNow.format(new Date()));
-        return element;
-    }
-
-    public WebElement findWithTakeScreen(WebElement d, By by) {
-        WebElement element = d.findElement(by);
-        DateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss");
-        screen.saveAllureScreenshot(element, formatForDateNow.format(new Date()));
-        return element;
-    }
 
 
     @BeforeTest
@@ -47,10 +32,10 @@ public class TestBefore {
         options.addArguments("no-sandbox"); // Bypass OS security model
         options.setExperimentalOption("useAutomationExtension", false);*/
         driver = new ChromeDriver(options);
-        screen = new Screen(driver, "C:\\Users\\milen\\IdeaProjects\\QA_Project");
+        //screen = new Screen(driver, "C:\\Users\\milen\\IdeaProjects\\QA_Project");
         driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
         driver.get("https://beru.ru");
-        WebElement element = findWithTakeScreen(driver, By.cssSelector("[class*='_1ZYDKa22GJ']"));
+        WebElement element = driver.findElement(By.cssSelector("[class*='_1ZYDKa22GJ']"));
         element.click();
     }
 
@@ -58,8 +43,5 @@ public class TestBefore {
     public void clear() {
         driver.quit();
     }
-
-
-
 }
 
