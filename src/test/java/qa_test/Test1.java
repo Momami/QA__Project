@@ -1,9 +1,8 @@
 package qa_test;
 
-
 import org.testng.annotations.*;
 
-
+@Listeners(Listener.class)
 public class Test1 extends TestBefore {
     @Test
     public void test1() {

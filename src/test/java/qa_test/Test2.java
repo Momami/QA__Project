@@ -1,13 +1,17 @@
 package qa_test;
 
-
-import org.testng.annotations.Parameters;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-
+@Listeners(Listener.class)
 public class Test2 extends TestBefore {
-    @Parameters("cityName")
-    @Test
+    @DataProvider(name = "cityName")
+    public Object[][] dataProviderMethod() {
+        return new Object[][]{{"Хвалынск"}, {"Москва"}, {"Красноармейск"}};
+    }
+
+    @Test(dataProvider = "cityName")
     public void test2(String cityName) {
         StartPage page = new StartPage(driver);
         page.clickCityInner();
