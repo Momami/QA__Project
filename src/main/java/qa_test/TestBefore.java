@@ -1,8 +1,11 @@
 package qa_test;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -46,7 +49,12 @@ public class TestBefore {
 
     @AfterMethod
     public void quit() {
-        driver.get("https://beru.ru/logout?retpath=https%3A%2F%2Fberu.ru%2F%3Fncrnd%3D4545");
+        try {
+            WebElement toExit = driver.findElement(By.cssSelector(".header2-nav__user"));
+            (new Actions(driver)).moveToElement(toExit).build().perform();
+            driver.findElement(By.cssSelector("[class*='__logout']")).click();
+        } catch(Exception e) {
+        }
         driver.quit();
     }
 }

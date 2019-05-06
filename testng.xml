@@ -5,7 +5,7 @@
             <class name="qa_test.Test1"/>
         </classes>
     </test>
-    <test name="ChangeCityTest">
+    <test name="NewCityTest">
         <classes>
             <class name="qa_test.Test2" />
         </classes>
