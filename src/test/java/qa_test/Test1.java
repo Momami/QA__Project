@@ -5,7 +5,7 @@ import org.testng.annotations.*;
 @Listeners(Listener.class)
 public class Test1 extends TestBefore {
     @Test
-    public void test1() {
+    public void loginTest() {
         StartPage topPanel = new StartPage(driver);
         topPanel.clickButtonAccount();
         Login loginForm = new Login(driver);

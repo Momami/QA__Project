@@ -10,7 +10,6 @@
             <class name="qa_test.Test2" />
         </classes>
     </test>
-
     <test name="PriceTest">
         <classes>
             <class name="qa_test.Test3" />

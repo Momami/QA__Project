@@ -17,12 +17,12 @@ public class Address extends TestBefore {
 
     @Step("Поиск элемента для ввода города")
     public void findCityInner() {
-        settingsRegion = driver.findElement(By.cssSelector("[class*='settings-list_type_region'] [class*='__inner']"));
+        regionName = driver.findElement(By.cssSelector("[class*='__region'] [class*='__inner']"));
     }
 
     @Step("Поиск адреса доставки")
     public void findDeliveryAddress() {
-        regionName = driver.findElement(By.cssSelector("[class*='__region'] [class*='__inner']"));
+        settingsRegion = driver.findElement(By.cssSelector("[class*='settings-list_type_region'] [class*='__inner']"));
     }
 
     @Step("Сравнение текущего региона и адреса доставки")

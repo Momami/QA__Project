@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 @Listeners(Listener.class)
 public class Test3 extends TestBefore {
     @Test
-    public void test3() {
+    public void priceTest() {
         StartPage page = new StartPage(driver);
         String itemForFinding = "Электрические зубные щетки";
         page.findItem(itemForFinding);

@@ -29,7 +29,6 @@ public class ProductPage extends TestBefore {
         String priceStr = Integer.toString(price);
         fieldPriceFrom.sendKeys(priceStr);
         // Ожидание появления подсказки, сколько элементов найдено
-        // Она гарантирует то, что страница прогрузилась и можно вводить второе поле
         WebElement wind = driver.findElement(By.cssSelector("[class*='_1PQIIOelRL']"));
         (new WebDriverWait(driver, 30)).until(ExpectedConditions.visibilityOf(wind));
     }
@@ -70,7 +69,6 @@ public class ProductPage extends TestBefore {
                         .cssSelector("[class*='grid-snippet_react']")).size() == countElement;
             }
         });
-        // Считываем щетки в список и проверяем, что их не 0
         elements = driver.findElements(By.cssSelector("[class*='grid-snippet_react']"));
     }
 

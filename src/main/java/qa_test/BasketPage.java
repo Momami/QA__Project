@@ -82,7 +82,6 @@ public class BasketPage extends TestBefore {
                 .getAttribute("textContent").replace(" ", "");
         int priceProduct = Integer.parseInt(priceStr);
         while (priceProduct < priceLimit) {
-            System.out.println(priceProduct);
             driver.findElement(By.xpath("//button//span[text()='+']")).click();
             priceStr = driver.findElement(By.xpath("//div[@data-auto='CartOfferPrice']/span/span/span"))
                     .getAttribute("textContent").replace(" ", "");

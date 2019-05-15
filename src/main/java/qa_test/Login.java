@@ -16,7 +16,6 @@ public class Login extends TestBefore {
     public void enterLogin(String login) {
         WebElement logInForm = (new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".passp-login-form"))));
-        //WebElement logIn = logInForm.findElement(By.name("login"));
         WebElement logIn = logInForm.findElement(By.name("login"));
         logIn.click();
         logIn.sendKeys(login);
@@ -27,7 +26,6 @@ public class Login extends TestBefore {
     public void enterPassword(String password) {
         WebElement passwordForm = (new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".passp-password-form"))));
-        //WebElement passwordLine = passwordForm.findElement(By.name("passwd"));
         WebElement passwordLine = passwordForm.findElement(By.name("passwd"));
         passwordLine.sendKeys(password);
         passwordLine.sendKeys(Keys.ENTER);

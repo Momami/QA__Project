@@ -57,7 +57,7 @@ public class StartPage extends TestBefore {
         this.cityName = cityName;
         WebElement CityForm = (new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[class*='region-select-form']"))));
-        driver.findElement(By.cssSelector("[class*='region-select-form']"));
+        //driver.findElement(By.cssSelector("[class*='region-select-form']"));
         WebElement enterCity = CityForm.findElement(
                 By.cssSelector("[class*='region-suggest'] [class*='input__control']"));
         enterCity.click();
