@@ -12,7 +12,7 @@ public class Test2 extends TestBefore {
     }
 
     @Test(dataProvider = "cityName")
-    public void newCityTest(String cityName) {
+    public void changeCityTest(String cityName) {
         StartPage page = new StartPage(driver);
         page.clickCityInner();
         page.changeCityName(cityName);
